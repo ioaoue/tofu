@@ -128,7 +128,7 @@ lazy val config = project dependsOn (core, data, opticsCore, concurrent) setting
 
 lazy val coreModules = List(core, memo, env, concurrent, opticsCore, data)
 
-lazy val commonModules = List(observable, opticsInterop, opticsMacro, logging, enums, config, derivation, zioInterop)
+lazy val commonModules = List(observable, opticsInterop, opticsMacro, logging, enums, config, derivation, zioInterop, sim)
 
 lazy val opticsCore = project
   .in(file("optics/core"))
@@ -177,6 +177,8 @@ lazy val derivation =
       publishName := "derivation",
     )
     .dependsOn(data)
+
+lazy val sim = project.settings(defaultSettings).dependsOn(core)
 
 lazy val zioCore =
   project.in(file("zio/core")).settings(defaultSettings, libraryDependencies += zio).dependsOn(core)
